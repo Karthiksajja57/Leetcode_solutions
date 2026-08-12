@@ -2,33 +2,25 @@ class Solution {
 public:
     bool isValidSudoku(vector<vector<char>>& board) {
          
-        vector<unordered_set<char>> rows(9);
-        vector<unordered_set<char>> cols(9);
-        vector<unordered_set<char>> boxes(9);
+        bool row[9][9] = {};
+        bool col[9][9] = {};
+        bool box[9][9] = {};
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                
-                if (board[i][j] == '.') {
+
+                if (board[i][j] == '.')
                     continue;
-                }
 
-                char num = board[i][j];
+                int num = board[i][j] - '1';
+                int b = (i / 3) * 3 + (j / 3);
 
-                // Find the 3x3 box
-                int box = (i / 3) * 3 + (j / 3);
-
-                // Check duplicate
-                if (rows[i].count(num) ||
-                    cols[j].count(num) ||
-                    boxes[box].count(num)) {
+                if (row[i][num] || col[j][num] || box[b][num])
                     return false;
-                }
 
-                // Store number
-                rows[i].insert(num);
-                cols[j].insert(num);
-                boxes[box].insert(num);
+                row[i][num] = true;
+                col[j][num] = true;
+                box[b][num] = true;
             }
         }
 
