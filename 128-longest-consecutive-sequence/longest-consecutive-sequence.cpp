@@ -6,7 +6,6 @@ public:
         int longest = 0;
 
         for (int x : st) {
-            // Start only if x is the beginning
             if (st.find(x - 1) == st.end()) {
                 int current = x;
                 int length = 1;
