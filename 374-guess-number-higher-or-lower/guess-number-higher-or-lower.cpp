@@ -13,10 +13,11 @@ public:
         int low = 1, high = n;
         while(low <= high){
         int mid = low + (high - low) / 2;
-        if(guess(mid) == 0){
+        int result = guess(mid);
+        if(result == 0){
             return mid;
         }
-        else if(guess(mid) == 1){
+        else if(result == 1){
             low = mid + 1;
         }
         else{
